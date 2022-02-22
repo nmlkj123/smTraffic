@@ -7,6 +7,7 @@ from selenium.common.exceptions import WebDriverException
 from selenium.common.exceptions import NoSuchElementException 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 import random
 page=0
@@ -39,6 +40,8 @@ def wheel_element(element, deltaY = 120, offsetX = 0, offsetY = 0):
 
 print("키워드입력:",end="")
 keyword = input()
+print("아이템아이디:",end="")
+itemId = input("82520022261")
 
 
 browser = webdriver.Chrome()
@@ -72,10 +75,11 @@ browser.switch_to.window(browser.window_handles[-1])
 
 #browser.execute_script("window.scrollTo(0, 700)")
 
-
+time.sleep(random.uniform(3, 5))
 
 pre_height = browser.execute_script("return document.body.scrollHeight")
 count=0
+findItem=""
 while True:
     isFind=True
     for i in range(100):
@@ -84,25 +88,45 @@ while True:
 
     
     scroll_height = browser.execute_script("return document.body.scrollHeight")
-    news=""
+    
     try:
-        news = browser.find_element(By.XPATH, "//a[contains(@data-nclick,'i:27419545188')]")
+        findItem = browser.find_element(By.XPATH, "//a[contains(@data-nclick,'i:{}')]".format(itemId))
     except NoSuchElementException:
         isFind =False
     
 
-    if isFind:
-        print("sss")
-    print(pre_height)
-    print(scroll_height)
     if pre_height == scroll_height:
         print(count) 
-        if(count==4):
+        if(count==3):
+            if isFind: break
             page=page+1
             browser.find_element(By.XPATH,'//*[@id="__next"]/div/div[2]/div/div[3]/div[1]/div[3]/div/a[{}]'.format(page)).click()
             time.sleep(1)
+            
         count=count+1
     else:
         pre_height = scroll_height
         count=0
 
+isFind = False
+desired_y = (findItem.size['height'] / 2) + findItem.location['y']
+window_h = browser.execute_script('return window.innerHeight')
+window_y = browser.execute_script('return window.pageYOffset')
+current_y = (window_h / 2) + window_y
+scroll_y_by = desired_y - current_y
+#browser.execute_script("window.scrollBy(0, arguments[0]);", scroll_y_by)
+while True:
+    
+    for i in range(100):
+        ran = random.uniform(4, 8)
+        browser.execute_script("window.scrollBy(0,{})".format(-ran))
+
+        if scroll_y_by >= 0: 
+            isFind = True
+            break
+        scroll_y_by = scroll_y_by+ran
+
+    time.sleep(random.uniform(0.2, 0.8))
+    if isFind:break
+
+findItem.click()
