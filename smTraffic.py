@@ -39,7 +39,7 @@ def wheel_element(element, deltaY = 120, offsetX = 0, offsetY = 0):
 #borwser = webdriver.Chrome("./chromedriver.exe")
 
 print("키워드입력:",end="")
-keyword = input()
+keyword = input("나도코딩")
 print("아이템아이디:",end="")
 itemId = input("82520022261")
 
