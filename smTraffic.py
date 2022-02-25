@@ -21,8 +21,9 @@ import os
 # chromedriver-autoinstaller
 # selenium
 # pure-python-adb
-
+#os.system('adb kill server')
 os.system('adb server start')
+
 #시작
 #검색 키워드
 print("키워드입력:",end="")
@@ -105,8 +106,8 @@ while int(tCount) > tStart :
     
     browser = webdriver.Chrome()
     options = webdriver.ChromeOptions()
-    user_agent = "Mozilla/5.0 (Linux; Android 9; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.83 Mobile Safari/537.36"
-    options.add_argument('user-agent=' + user_agent)
+    #user_agent = "Mozilla/5.0 (Linux; Android 9; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.83 Mobile Safari/537.36"
+    #options.add_argument('user-agent=' + user_agent)
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
     # options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
 
