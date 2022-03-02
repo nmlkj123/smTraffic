@@ -177,12 +177,11 @@ while int(tNum) > total_count:
             news_timeout = time.time()+random.randint(10,15)
 
             while(True):
-                if(time.time()>news_wait_time): break
 
                 for i in range(random.randint(300,400)):
                     browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1, 1.2)))
                 time.sleep(random.uniform(0.8, 1.2))
-
+                if(time.time()>news_wait_time): break
                 if time.time() > news_timeout:
                     break
             category_list = browser.find_elements(By.XPATH,'//li[contains(@class,"Nlist_item _LNB_ITEM")]')
