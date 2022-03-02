@@ -40,19 +40,33 @@ os.system('adb server start') #adb.exe 실행
 
 #검색 키워드
 print("키워드입력:",end="")
-keyword = "고양이 모래"
+keyword = input()
 
 #검색 아이디
 print("아이템아이디:",end="")
-itemId = "8054752016"
+itemId = input()
 
 #반복작업 수
 print("트래픽 회수:",end="")
-tNum = "2"
+tNum = input()
 
 #랜덤 뉴스 체류시간
-nStartNum= 60
-nEndNum = 120
+print("뉴스 최소 체류시간(초):",end="")
+nStartNum= input()
+print("뉴스 최대 체류시간(초):",end="")
+nEndNum = input()
+
+#랜덤 검색 체류시간
+print("랜덤검색 최소 체류시간(초):",end="")
+rStartNum= input()
+print("랜덤검색 최대 체류시간(초):",end="")
+rEndNum = input()
+
+#상품 체류시간
+print("상품 최소 체류시간(초):",end="")
+iStartNum= input()
+print("상품 최대 체류시간(초):",end="")
+iEndNum = input()
 
 total_count = 0
 
@@ -131,8 +145,8 @@ while int(tNum) > total_count:
     # 랜덤뉴스시작  시작할수도 안할수도있음                                                   #
     ##########################################################################################
     if(newstart == 1):
-
-        news_wait_time = time.time()+random.randint(nStartNum,nEndNum)
+       
+        news_wait_time = time.time()+random.randint(int(nStartNum),int(nEndNum))
         time.sleep(2)
 
         for a in range(random.randint(1,2)):
@@ -218,8 +232,11 @@ while int(tNum) > total_count:
     search.click()
     time.sleep(2)
 
+    ranSearch_wait_time = time.time()+random.randint(int(rStartNum),int(rEndNum))
 
-    for i in range(random.randint(2,2)):
+    while(True):
+        if(time.time()>ranSearch_wait_time): break
+    
         search=browser.find_element(By.NAME,"query")
         search.clear()
 
@@ -237,6 +254,8 @@ while int(tNum) > total_count:
         
         max_time_end = time.time()+(random.randint(10, 15)) #랜덤 숫자시간동안 체류
         while(True):
+            if(time.time()>ranSearch_wait_time): break
+
             for i in range(300):
                 browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1, 1.5)))
             
@@ -387,7 +406,7 @@ while int(tNum) > total_count:
     ##########################################################################################
     # 타겟상품 체류                                                                          #
     ##########################################################################################
-    max_time_end = time.time()+(random.randint(60, 80)) #타겟페이지 체류시간
+    max_time_end = time.time()+(random.randint(int(iStartNum), int(iEndNum))) #타겟페이지 체류시간
 
     def scroll_down():
         time.sleep(2)
