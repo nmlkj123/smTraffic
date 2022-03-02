@@ -146,7 +146,7 @@ while int(tNum) > total_count:
     # //END                                                                                  #
     ##########################################################################################
 
-    newstart=1
+    newstart=random.randint(1,2)
 
     ##########################################################################################
     # 랜덤뉴스시작  시작할수도 안할수도있음                                                   #
@@ -242,14 +242,14 @@ while int(tNum) > total_count:
                 search=browser.find_element(By.NAME,"query")
                 break
             except NoSuchElementException:
-                browser.back() 
+                browser.execute_script("window.history.go(-1)")
     else:
         while(True):
             try:
                 search=browser.find_element(By.ID,"MM_SEARCH_FAKE")
                 break
             except NoSuchElementException:
-                browser.back()
+                browser.execute_script("window.history.go(-1)")
 
     search.click()
     time.sleep(2)
