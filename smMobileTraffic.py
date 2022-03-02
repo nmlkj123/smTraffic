@@ -68,6 +68,13 @@ iStartNum= input()
 print("상품 최대 체류시간(초):",end="")
 iEndNum = input()
 
+#재시작할 시간
+print("종료후 재시작할 최소시간(초):",end="")
+restart_min= input()
+print("종료후 재시작할 최대시간(초):",end="")
+restrat_max = input()
+
+
 total_count = 0
 
 
@@ -462,6 +469,6 @@ while int(tNum) > total_count:
     print(total_count,"번완료")
 
     # 초뒤 재시작
-    next_start = random.randint(60,120)
+    next_start = random.randint(int(restart_min),int(restrat_max))
     print(next_start,"초뒤 재시작합니다")
     time.sleep(next_start)
