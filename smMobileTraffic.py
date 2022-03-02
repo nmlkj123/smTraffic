@@ -324,7 +324,7 @@ while int(tNum) > total_count:
         more_shopping_loc = scroll_location(more_shopping) #쇼핑더보기 위치 알아내기
         isFind = False   
         
-        for i in range(random.randint(300,400)):
+        for i in range(200):
             ran = random.uniform(2, 2.5)
             browser.execute_script("window.scrollBy(0,{})".format(ran))
 
@@ -333,7 +333,7 @@ while int(tNum) > total_count:
                 isFind = True
 
 
-        time.sleep(random.uniform(0.2, 0.8))
+        time.sleep(random.uniform(0.1, 0.3))
         if isFind:break
     
     time.sleep(1) 
@@ -387,7 +387,7 @@ while int(tNum) > total_count:
 
         #print("뺀수",page_location_loc)        
         if breaker : break
-        time.sleep(random.uniform(0.4, 0.8)) 
+        time.sleep(random.uniform(0.1, 0.3)) 
 
     """
     STEP03:
@@ -410,7 +410,7 @@ while int(tNum) > total_count:
                 break
             find_item_scroll_y = find_item_scroll_y+ran
 
-        time.sleep(random.uniform(0.4, 0.8)) 
+        time.sleep(random.uniform(0.1, 0.3)) 
         if isFind:break
         
                 
