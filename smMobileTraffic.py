@@ -310,14 +310,14 @@ while int(tNum) > total_count:
     search=browser.find_element(By.NAME,"query")
     search.clear() #검색지우기
 
-    time.sleep(5)
+    time.sleep(2)
 
     for char in keyword: #찾을 키워드 검색
         search.send_keys(char)
         time.sleep(random.uniform(0.4, 0.8))
 
     search.send_keys(Keys.ENTER)
-    time.sleep(5)
+    time.sleep(3)
 
     while True: #쇼핑더보기 가 화면에 나올때까지 스크롤
         more_shopping = browser.find_element(By.XPATH, '//*[@class="api_more _more"]') 
