@@ -301,7 +301,7 @@ while int(tNum) > total_count:
     time.sleep(5)
 
     while True: #쇼핑더보기 가 화면에 나올때까지 스크롤
-        more_shopping = browser.find_element(By.XPATH, "//a[contains(@data-log,'shp_tli.more')]") 
+        more_shopping = browser.find_element(By.XPATH, '//*[@class="api_more _more"]') 
         more_shopping_loc = scroll_location(more_shopping) #쇼핑더보기 위치 알아내기
         isFind = False   
 
