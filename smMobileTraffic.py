@@ -360,7 +360,7 @@ while int(tNum) > total_count:
                 break
                 
         if breaker : break
-        time.sleep(random.uniform(0.5, 0.8)) 
+        time.sleep(random.uniform(0.2, 0.8)) 
 
     """
     STEP03:
@@ -382,7 +382,7 @@ while int(tNum) > total_count:
                 break
             find_item_scroll_y = find_item_scroll_y+ran
 
-        time.sleep(random.uniform(0.5, 0.8)) 
+        time.sleep(random.uniform(0.2, 0.8)) 
         if isFind:break
         
                 
