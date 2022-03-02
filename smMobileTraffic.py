@@ -10,7 +10,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-
+from bs4 import BeautifulSoup as bs
 import time
 import random
 import requests
@@ -146,14 +146,14 @@ while int(tNum) > total_count:
     # //END                                                                                  #
     ##########################################################################################
 
-    newstart=random.randint(1,2)
+    newstart=1
 
     ##########################################################################################
     # 랜덤뉴스시작  시작할수도 안할수도있음                                                   #
     ##########################################################################################
     if(newstart == 1):
        
-        news_wait_time = time.time()+random.randint(int(nStartNum),int(nEndNum))
+        
         time.sleep(2)
 
         for a in range(random.randint(1,2)):
@@ -165,6 +165,8 @@ while int(tNum) > total_count:
         time.sleep(2)
 
         browser.find_element(By.XPATH,'//a[@class="nav_link nav_news"]').click()
+
+        news_wait_time = time.time()+random.randint(int(nStartNum),int(nEndNum))
 
         while(True):
             
@@ -178,18 +180,21 @@ while int(tNum) > total_count:
 
             while(True):
 
-                for i in range(random.randint(300,400)):
-                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1.5, 2)))
+                for i in range(200):
+                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(2, 2.5)))
                 time.sleep(random.uniform(0.8, 1.2))
 
                 if(time.time()>news_wait_time): break
+                
                 if time.time() > news_timeout:
                     break
-            category_list = browser.find_elements(By.XPATH,'//li[contains(@class,"Nlist_item _LNB_ITEM")]')
+
+              
+            category_list = browser.find_elements(By.XPATH,'//*[@id="_LNB"]/ul/li')
             ran = random.randint(2,len(category_list)-4)
-            #print(ran)
-            category_list[ran].click()
             time.sleep(2)
+            category_list[ran].click()
+           
 
             for i in range(0,6):
                 if(time.time()>news_wait_time): break
@@ -201,8 +206,8 @@ while int(tNum) > total_count:
                 time.sleep(2)
                 random_time = time.time()+(random.randint(15, 20))
                 while(True):
-                    for j in range(random.randint(200,300)):
-                        browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1, 1.2)))
+                    for j in range(200):
+                        browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1.8, 2.2)))
                     time.sleep(random.uniform(1.2, 2.3))
 
                     if time.time() > random_time:
@@ -228,7 +233,7 @@ while int(tNum) > total_count:
     # 랜덤검색시작                                                                           #
     ##########################################################################################
 
-    searchKeywords = ["이재명","안철수","맞춤 앵글제작","엘든링","우크라이나 러시아","코로나 확진자","연말정산 하는법","날씨"]
+    #searchKeywords = ["이재명","안철수","맞춤 앵글제작","엘든링","우크라이나 러시아","코로나 확진자","연말정산 하는법","날씨"]
     time.sleep(2)
     search=""
     if(newstart == 1) :
@@ -252,16 +257,20 @@ while int(tNum) > total_count:
     ranSearch_wait_time = time.time()+random.randint(int(rStartNum),int(rEndNum))
 
     while(True):
+        rec = requests.get('http://tselect.dothome.co.kr/rankeyword/').text
+        soup = bs(rec, "html.parser")
+        ran_keyword = soup.select_one(".wrap > table:nth-child(1) > tbody > tr:nth-child(1) > td.right").text
+
         if(time.time()>ranSearch_wait_time): break
     
         search=browser.find_element(By.NAME,"query")
         search.clear()
 
-        choice = random.choice(searchKeywords) #랜덤한 키워드 불러오기
-        searchKeywords.remove(choice) #불러온 키워드 리스트에서 삭제
+        #choice = random.choice(searchKeywords) #랜덤한 키워드 불러오기
+        #searchKeywords.remove(choice) #불러온 키워드 리스트에서 삭제
         time.sleep(2)
 
-        for char in choice:
+        for char in ran_keyword:
             search.send_keys(char)
             time.sleep(random.uniform(0.4, 0.8))
 
@@ -273,8 +282,8 @@ while int(tNum) > total_count:
         while(True):
             if(time.time()>ranSearch_wait_time): break
 
-            for i in range(300):
-                browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1, 1.5)))
+            for i in range(200):
+                browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1.8, 2.2)))
             
             time.sleep(random.uniform(0.8, 1.3))
             if time.time() > max_time_end:
@@ -314,9 +323,9 @@ while int(tNum) > total_count:
         more_shopping = browser.find_element(By.XPATH, '//*[@class="api_more _more"]') 
         more_shopping_loc = scroll_location(more_shopping) #쇼핑더보기 위치 알아내기
         isFind = False   
-
+        
         for i in range(random.randint(300,400)):
-            ran = random.uniform(1, 1.5)
+            ran = random.uniform(2, 2.5)
             browser.execute_script("window.scrollBy(0,{})".format(ran))
 
             more_shopping_loc = more_shopping_loc - ran
@@ -326,7 +335,7 @@ while int(tNum) > total_count:
 
         time.sleep(random.uniform(0.2, 0.8))
         if isFind:break
-
+    
     time.sleep(1) 
     more_shopping.click() # 쇼핑더보기 클릭
 
@@ -355,10 +364,10 @@ while int(tNum) > total_count:
         except NoSuchElementException:
             isFind = False
 
+        #print(page_location_loc)
 
-
-        for i in range(random.randint(300,400)):
-            ran = random.uniform(1, 1.5)
+        for i in range(200):
+            ran = random.uniform(2, 2.5)
             browser.execute_script("window.scrollBy(0,{})".format(ran))
 
             page_location_loc = page_location_loc - ran
@@ -375,9 +384,10 @@ while int(tNum) > total_count:
                 page_element.click()
                 time.sleep(5)
                 break
-                
+
+        #print("뺀수",page_location_loc)        
         if breaker : break
-        time.sleep(random.uniform(0.2, 0.8)) 
+        time.sleep(random.uniform(0.4, 0.8)) 
 
     """
     STEP03:
@@ -390,8 +400,9 @@ while int(tNum) > total_count:
     while True:
         isFind = False
         find_item_scroll_y = scroll_location(findItem)  
-        for i in range(random.randint(300,400)):
-            ran = random.uniform(1, 1.5)
+        
+        for i in range(200):
+            ran = random.uniform(2, 2.5)
             browser.execute_script("window.scrollBy(0,{})".format(-ran))
 
             if find_item_scroll_y >= 0: 
@@ -399,7 +410,7 @@ while int(tNum) > total_count:
                 break
             find_item_scroll_y = find_item_scroll_y+ran
 
-        time.sleep(random.uniform(0.2, 0.8)) 
+        time.sleep(random.uniform(0.4, 0.8)) 
         if isFind:break
         
                 
@@ -433,15 +444,15 @@ while int(tNum) > total_count:
             find_end = browser.find_element(By.XPATH,'//*[@class="E2QDRW5f2k"]') # 마지막 div
             find_end_loc = scroll_location(find_end) 
 
-            for i in range(random.randint(300,400)):
-                ran = random.uniform(1, 1.5)
+            for i in range(200):
+                ran = random.uniform(1.8, 2)
                 browser.execute_script("window.scrollBy(0,{})".format(ran))
 
                 find_end_loc = find_end_loc - ran
                 if find_end_loc < 0: 
                     isFind = True
 
-            time.sleep(random.uniform(0.8, 1.3))
+            time.sleep(random.uniform(0.4, 0.8))
 
             if isFind : break
 
