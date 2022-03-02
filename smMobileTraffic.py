@@ -179,8 +179,9 @@ while int(tNum) > total_count:
             while(True):
 
                 for i in range(random.randint(300,400)):
-                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1, 1.5)))
-                time.sleep(random.uniform(0.4, 1.2))
+                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1.5, 2)))
+                time.sleep(random.uniform(0.8, 1.2))
+
                 if(time.time()>news_wait_time): break
                 if time.time() > news_timeout:
                     break
@@ -201,8 +202,8 @@ while int(tNum) > total_count:
                 random_time = time.time()+(random.randint(15, 20))
                 while(True):
                     for j in range(random.randint(200,300)):
-                        browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1, 1.5)))
-                    time.sleep(random.uniform(0.4, 1.5))
+                        browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1, 1.2)))
+                    time.sleep(random.uniform(1.2, 2.3))
 
                     if time.time() > random_time:
                         break
@@ -315,7 +316,7 @@ while int(tNum) > total_count:
         isFind = False   
 
         for i in range(random.randint(300,400)):
-            ran = random.uniform(2, 2.5)
+            ran = random.uniform(1, 1.5)
             browser.execute_script("window.scrollBy(0,{})".format(ran))
 
             more_shopping_loc = more_shopping_loc - ran
@@ -357,7 +358,7 @@ while int(tNum) > total_count:
 
 
         for i in range(random.randint(300,400)):
-            ran = random.uniform(2, 2.5)
+            ran = random.uniform(1, 1.5)
             browser.execute_script("window.scrollBy(0,{})".format(ran))
 
             page_location_loc = page_location_loc - ran
@@ -390,7 +391,7 @@ while int(tNum) > total_count:
         isFind = False
         find_item_scroll_y = scroll_location(findItem)  
         for i in range(random.randint(300,400)):
-            ran = random.uniform(2, 2.5)
+            ran = random.uniform(1, 1.5)
             browser.execute_script("window.scrollBy(0,{})".format(-ran))
 
             if find_item_scroll_y >= 0: 
@@ -433,14 +434,14 @@ while int(tNum) > total_count:
             find_end_loc = scroll_location(find_end) 
 
             for i in range(random.randint(300,400)):
-                ran = random.uniform(1.5, 2)
+                ran = random.uniform(1, 1.5)
                 browser.execute_script("window.scrollBy(0,{})".format(ran))
 
                 find_end_loc = find_end_loc - ran
                 if find_end_loc < 0: 
                     isFind = True
 
-            time.sleep(random.uniform(0.5, 1.3))
+            time.sleep(random.uniform(0.8, 1.3))
 
             if isFind : break
 
