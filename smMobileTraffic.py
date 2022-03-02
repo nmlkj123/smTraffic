@@ -100,7 +100,7 @@ while int(tNum) > total_count:
 
     print("아이피주소를 변환합니다")
     print("현재아이피 : " ,requests.get('https://api.ipify.org').text)
-    time.sleep(5)
+    time.sleep(2)
     device.shell("svc data disable")
     device.shell("settings put global airplane_mode_on 1")
 
