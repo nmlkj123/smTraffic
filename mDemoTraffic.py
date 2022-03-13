@@ -44,11 +44,11 @@ if  __name__  ==  '__main__' :
 
     #검색 키워드
     print("키워드입력:",end="")
-    keyword = "뱃살빼는 ab슬라이드"
+    keyword = "식기건조대 1단 대형"
 
     #검색 아이디
     print("아이템아이디:",end="")
-    itemId = "83921030082"
+    itemId = "83948519558"
 
     #반복작업 수
     print("트래픽 회수:",end="")
@@ -87,7 +87,7 @@ if  __name__  ==  '__main__' :
     devices = client.devices()
     
 
-        # 83921030082 뱃살빼는 ab슬라이드
+        # 83921030082 뱃살빼는 ab슬라이드 83948519558
 
     while int(tNum) > total_count:
         
@@ -120,15 +120,16 @@ if  __name__  ==  '__main__' :
         # //END                                                                                  #
         ##########################################################################################
          
-
+        
         page=1 #1페이지부터 아이템검색
 
         ##########################################################################################
         # selenium 설정                                                                          #
         ##########################################################################################
         options = uc.ChromeOptions()
-        #options = Options()
-        #Mozilla/5.0 (Linux; Android 9; SM-G611MT) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36
+        #options = Options()  18
+
+        #Mozilla/5.0 (Linux; Android 9; SM-G611MT) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36 
         #Mozilla/5.0 (Linux; Android 9; SM-G950F) AppleWebKit/537.36 (KHTML%2C like Gecko) Chrome/98.0.4758.101 Mobile Safari/537.36
         #Mozilla/5.0 (Linux; Android 9; SM-A205G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36
         #Mozilla/5.0 (Linux; Android 8.0.0; MI 5s) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36
@@ -140,9 +141,115 @@ if  __name__  ==  '__main__' :
         #Mozilla/5.0 (Linux; Android 8.1.0; SM-G610F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/82.0.4057.2 Mobile Safari/537.36
         #Mozilla/5.0 (Linux; Android 9; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/82.0.4085.0 Mobile Safari/537.36
         #Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-A207M) AppleWebKit/537.36 (KHTML%2C like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile Safari/537.36
-        user_agent = "Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-A207M) AppleWebKit/537.36 (KHTML%2C like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile Safari/537.36"
-        #phons=["iPhone X",]
+        #Mozilla/5.0 (Linux; Android 9; SM-G950U1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 11; SM-G525F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/82.0.4057.2 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 10; SAMSUNG SM-A307G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/10.1 Chrome/71.0.3578.99 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G970F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.2 Chrome/92.0.4515.166 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 11; SM-P200) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.101 Safari/537.36
+        #Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/99.0.4844.47 Mobile/15E148 Safari/604.1
+        #Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-A528B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.2 Chrome/92.0.4515.166 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 9; SM-G950U1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36
+        #Mozilla/5.0 (iPhone; CPU iPhone OS 15_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML%2C like Gecko) CriOS/98.0.4758.85 Mobile/15E148 Safari/604.1
 
+        #Mozilla/5.0 (Linux; Android 7.1.1; SM-T350) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.101 Mobile Safari/537.36
+        #Mozilla/5.0 (iPhone; CPU iPhone OS 15_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/1.0.7.0 Mobile/15E148 Safari/605.1
+        #Mozilla/5.0 (Linux; Android 8.0.0; SAMSUNG SM-A520F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/15.0 Chrome/97.0.4680.0 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 11; SM-F127G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 9; SM-G970F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 12; SAMSUNG SM-G781B/G781BXXS4DVB1) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.2 Chrome/92.0.4515.166 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 9; SAMSUNG SM-J701F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.0 Chrome/96.0.4664.9 Mobile Safari/537.36
+        #Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/98.0.4758.97 Mobile/15E148 Safari/604.1
+        #Mozilla/5.0 (Linux; Android 12; SAMSUNG SM-F711U1) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.2 Chrome/92.0.4515.166 Mobile Safari/537.36
+        #Mozilla/5.0 (Linux; Android 11; SM-G525F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36
+        user_agent=""
+        
+        android_types11 = [ 'SM-G981N','SM-G986N','SM-G988N','SM-N981N','SM-N986N','SM-F916N','SM-F707N','SM-G991N','SM-G996N',
+                            'SM-G998N','SM-A325N','SM-A326K','SM-F700N','SM-T870','SM-T970','SM-G970N','SM-G973N','SM-G975N',
+                            'SM-G977N','SM-N971N','SM-N976N','SM-A516N','SM-A716S','SM-A426N','SM-A528N','SM-T860','SM-P610',
+                            'SM-A908N','SM-A805N','SM-A217N','SM-A405S','SM-T720','SM-A315N','SM-T505N','SM-A202K','SM-A305N',
+                            'SM-A205S','SM-T290','SM-T510','SM-A125N','SM-A102N','SM-A105N','SM-G525N' 
+        ]
+
+        android_types10 = [ 'SM-G970N','SM-G973N','SM-G975N','SM-G977N','SM-N971N','SM-N976N','SM-N960N','SM-G960N','SM-G965N',
+                            'SM-A908N','SM-A805N','SM-A505N','SM-T860','SM-A305N','SM-F907N','SM-A750N','SM-A202K','SM-A600N',
+                            'SM-G887N','SM-A405S','SM-A205S','SM-A105N','SM-A605K','SM-G885S','SM-A102N','SM-T720','SM-T590','SM-T510',
+                            'SM-P200','SM-J737S','SM-A516N','SM-A716S','SM-G981N','SM-G986N','SM-G988N','SM-G781N','SM-F700N',
+                            'SM-A315N','SM-A217N','SM-N981N','SM-N986N','SM-T875N','SM-T975N','SM-T976N','SM-F916N','SM-A125N' 
+        ] 
+ 
+        iphone_type_chrome = [
+                            '15_4','14_7','15_3','14_2','14_4','15_0','14_8_1','15_3_1','13_7','14_7','14_3','15_2'
+        ]                    
+
+        chrome_browser_android_versions = [
+                            'Chrome/99.0.4844.58', 'Chrome/99.0.4844.48', 'Chrome/98.0.4758.101', 'Chrome/98.0.4758.87', 'Chrome/97.0.4692.98', 'Chrome/97.0.4692.70', 
+                            'Chrome/97.0.4692.87', 'Chrome/96.0.4664.104', 'Chrome/96.0.4664.92', 'Chrome/95.0.4638.74', 'Chrome/95.0.4638.50', 'Chrome/94.0.4606.85', 
+                            'Chrome/94.0.4593.0', 'Chrome/94.0.4606.71', 'Chrome/94.0.4707.47', 'Chrome/94.0.4606.80', 'Chrome/92.0.4515.166', 'Chrome/92.0.4515.115', 
+                            'Chrome/92.0.4515.131', 'Chrome/93.0.4577.75', 'Chrome/93.0.4577.62', 'Chrome/93.0.4577.82'
+        ] 
+
+        chrome_browser_ios_versions = [
+                            'CriOS/95.0.4638.50', 'CriOS/99.0.4844.59', 'CriOS/99.0.4844.47', 'CriOS/98.0.4758.364','CriOS/92.0.4515.90','CriOS/72.0.3626.74','CriOS/80.0.3987.95',
+                            'CriOS/98.0.4758.97', 'CriOS/75.0.3770.103', 'CriOS/85.0.4183.109','CriOS/97.0.4692.72','CriOS/96.0.4664.354','CriOS/98.0.4758.85',
+                            'CriOS/98.0.4758.102', 'CriOS/87.0.4280.163','CriOS/76.0.3809.123','CriOS/83.0.4103.63', 'CriOS/94.0.4606.334', 'CriOS/96.0.4664.116', 'CriOS/84.0.4147.71',
+                            'CriOS/96.0.4664.348', 'CriOS/93.0.4577.78','CriOS/83.0.4103.88','CriOS/97.0.4692.84','CriOS/97.0.4664.36','CriOS/85.0.4183.92', 'CriOS/81.0.4044.124'
+        ]                       
+
+        samsung_chrome_browser_android_versions16 = [
+                            'Chrome/92.0.4515.166', 'Chrome/96.0.4652.192', 'Chrome/97.0.4675.0', 'Chrome/96.0.4648.211', 'Chrome/96.0.4687.49', 'Chrome/96.0.4664.76', 'Chrome/96.0.4646.0',
+                            'Chrome/97.0.4675.0', 'Chrome/97.0.4686.210' , 'Chrome/97.0.4692.99', 'Chrome/97.0.4691.0', 'Chrome/97.0.4681.1', 'Chrome/96.0.4650.123', 'Chrome/97.0.4692.2', 'Chrome/96.0.1050.0',
+                            'Chrome/97.0.4668.2', 'Chrome/96.0.4651.205' , 'Chrome/97.0.4667.2' , 'Chrome/96.0.4648.211'
+        ]
+
+        samsung_chrome_browser_android_versions15 = [
+                            'Chrome/96.0.4653.0', 'Chrome/97.0.4686.0', 'Chrome/96.0.1047.0', 'Chrome/97.0.4688.135', 'Chrome/90.0.4430.210', 'Chrome/97.0.4680.0', 'Chrome/96.0.4649.103', 'Chrome/97.0.4687.139',
+                            'Chrome/97.0.4692.4', 'Chrome/96.0.4660.2', 'Chrome/97.0.4678.2', 'Chrome/96.0.4656.5', 'Chrome/97.0.4681.2', 'Chrome/96.3.4664.32' , 'Chrome/94.1.4606.61', 'Chrome/94.0.4582.0', 'Chrome/94.0.4581.0'
+            
+        ]
+
+        def make_chrom_user_agent():
+            user_agent=""
+            num = random.randint(1,2)
+            android_versions=["Android 11","Android 10"]
+  
+            if num == 1:
+                user_agent = "Mozilla/5.0 (Linux; "+"Android 11; "+random.choice(android_types11)+")"+" AppleWebKit/537.36 (KHTML, like Gecko) "+random.choice(chrome_browser_android_versions)+" Mobile Safari/537.36"
+            elif num == 2:
+                user_agent = "Mozilla/5.0 (Linux; "+"Android 10; "+random.choice(android_types10)+")"+" AppleWebKit/537.36 (KHTML, like Gecko) "+random.choice(chrome_browser_android_versions)+" Mobile Safari/537.36"
+            return user_agent
+
+        def make_samung_user_agent():
+            user_agent=""
+            num = random.randint(1,2)
+            and_type = random.randint(1,2)
+            android_device = ""
+            if and_type == 1:
+                android_device = "Android 11; SAMSUNG "+random.choice(android_types11)
+            if and_type == 2:
+                android_device = "Android 10; SAMSUNG "+random.choice(android_types10)    
+
+            if num == 1:
+                user_agent = "#Mozilla/5.0 (Linux; "+android_device+") AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.0 "+random.choice(samsung_chrome_browser_android_versions16)+" Mobile Safari/537.36"
+            elif num == 2:
+                user_agent = "#Mozilla/5.0 (Linux; "+android_device+") AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/15.0 "+random.choice(samsung_chrome_browser_android_versions15)+" Mobile Safari/537.36"
+            return user_agent
+
+        def make_chrome_ios_user_agent():
+            user_agent=""
+            user_agent ="Mozilla/5.0 (iPhone; CPU iPhone OS "+random.choice(iphone_type_chrome)+" like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) "+random.choice(chrome_browser_ios_versions)+" Mobile/15E148 Safari/604.1"
+            return user_agent
+
+        choice_user_agent = random.randint(1,3)
+
+        if choice_user_agent == 1:
+            user_agent =make_chrom_user_agent()
+        elif choice_user_agent == 2: 
+            user_agent =make_samung_user_agent()
+        elif choice_user_agent == 3: 
+            user_agent =make_chrome_ios_user_agent()
+
+        print(user_agent)
+       
         mobile_emulation = {
         "deviceMetrics": { "width": 360, "height": 640, "pixelRatio": 3.0 },
         "userAgent": "Mozilla/5.0 (Linux; Android 8.0.0; SM-G955U Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36" }
@@ -158,11 +265,11 @@ if  __name__  ==  '__main__' :
         #options.add_experimental_option("mobileEmulation", mobile_emulation)
         #options.add_argument('--disable-blink-features=AutomationControlled')
 
-        #options.add_argument("--window-size=400,950") 
+        #options.add_argument("--window-size=400,950")
         
         
         browser = uc.Chrome(options=options)
-        #browser = webdriver.Chrome(executable_path="./chromedriver.exe",options=options) 
+        #browser = webdriver.Chrome(executable_path="./chromedriver.exe",options=options)
 
         browser.get("https://google.com")
 
