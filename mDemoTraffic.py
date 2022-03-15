@@ -557,7 +557,7 @@ if  __name__  ==  '__main__' :
                 for i in range(200):
                     ran = random.uniform(1.8, 2)
                     browser.execute_script("window.scrollBy(0,{})".format(ran))     
-
+            time.sleep(random.uniform(0.4, 0.8))
         time.sleep(2)
         browser.back()
 
@@ -633,7 +633,23 @@ if  __name__  ==  '__main__' :
         # //END                                                                                  #
         ##########################################################################################
         time.sleep(random.randint(5, 15))
+        end_time=time.time()+(random.randint(5,15))
+        while(True):
+            if time.time() > end_time: break 
+            upanddown=random.randint(1,4)
+            
+            if(upanddown ==1 |upanddown == 2| upanddown== 3):
 
+                for i in range(200):
+                    ran = random.uniform(1.8, 2)
+                    browser.execute_script("window.scrollBy(0,{})".format(-ran))
+            else:
+                for i in range(200):
+                    ran = random.uniform(1.8, 2)
+                    browser.execute_script("window.scrollBy(0,{})".format(ran)) 
+        
+        
+        time.sleep(2)
         browser.quit() #브라우저 종료
 
         total_count = total_count+1
