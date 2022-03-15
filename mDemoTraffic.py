@@ -174,19 +174,21 @@ if  __name__  ==  '__main__' :
 
 
         choice_user_agent = random.randint(1,3)
-
-        if choice_user_agent == 1:
+        print(choice_user_agent)
+        if choice_user_agent == 1 | choice_user_agent == 3:
             root = android_chrome_xml.getroot()
             agents=root.findall('agent')
             user_agent=random.choice(agents).text
+
         if choice_user_agent == 2:
-            root = android_samsung_xml.getroot()
-            agents=root.findall('agent')
-            user_agent=random.choice(agents).text
-        if choice_user_agent == 3:
             root = ios_chrome_xml.getroot()
             agents=root.findall('agent')
-            user_agent=random.choice(agents).text        
+            user_agent=random.choice(agents).text
+            
+        # if choice_user_agent == 3:
+        #     root = android_samsung_xml.getroot()
+        #     agents=root.findall('agent')
+        #     user_agent=random.choice(agents).text      
 
         print(user_agent)
        
@@ -198,7 +200,7 @@ if  __name__  ==  '__main__' :
        
         options.add_argument('--user-agent=' + user_agent)
 
-        options.add_argument("disable-infobars")
+        #options.add_argument("disable-infobars")
 
         #options.add_experimental_option("excludeSwitches", ["enable-automation","enable-logging"])
         #options.add_experimental_option('useAutomationExtension', False)
@@ -230,7 +232,7 @@ if  __name__  ==  '__main__' :
         
             
             time.sleep(2)
-
+            
             for a in range(random.randint(1,2)):
                 time.sleep(2)
                 for i in range(300):
@@ -543,18 +545,89 @@ if  __name__  ==  '__main__' :
             scroll_down()
 
         while(True):
-            if time.time() > max_time_end: break  
+            if time.time() > max_time_end: break 
+
+            upanddown=random.randint(1,4)
+            if(upanddown ==1 |upanddown == 2| upanddown== 3):
+
+                for i in range(200):
+                    ran = random.uniform(1.8, 2)
+                    browser.execute_script("window.scrollBy(0,{})".format(-ran))
+            else:
+                for i in range(200):
+                    ran = random.uniform(1.8, 2)
+                    browser.execute_script("window.scrollBy(0,{})".format(ran))     
 
         time.sleep(2)
         browser.back()
 
+        time.sleep(5)
         ##########################################################################################
         # //END                                                                                  #
         ##########################################################################################
-
+        
         ##########################################################################################
         # 랜덤게시물                                                                             #
         ##########################################################################################
+        if random.randint(1,2) == 1:
+
+            find_rand_shops = browser.find_elements(By.XPATH, "//*[contains(@data-nclick,'N=a:lst*N.item')]")
+            print(len(find_rand_shops))
+            find_rand_shop = random.choice(find_rand_shops)
+
+            rand_shop_loc = scroll_location(find_rand_shop)
+
+            while(True):
+                now_rand_shop_loc = scroll_location(find_rand_shop)
+                breaker = False
+                if rand_shop_loc > 0:
+
+                    for i in range(200):
+                        ran = random.uniform(2, 2.5)
+                        browser.execute_script("window.scrollBy(0,{})".format(ran))
+
+                        now_rand_shop_loc = now_rand_shop_loc - ran
+
+                        if now_rand_shop_loc <= 0: 
+                            time.sleep(2)
+                            find_rand_shop.click()
+                            breaker = True
+                            break
+
+                elif rand_shop_loc < 0:
+
+                    for i in range(200):
+                        ran = random.uniform(2, 2.5)
+                        browser.execute_script("window.scrollBy(0,{})".format(-ran))
+                        now_rand_shop_loc = now_rand_shop_loc + ran
+                        if now_rand_shop_loc >= 0: 
+                            time.sleep(2)
+                            find_rand_shop.click()
+                            breaker = True
+                            break    
+
+                time.sleep(random.uniform(0.8, 1.2))
+
+                if breaker : break
+
+            max_time_end = time.time()+(random.randint(10,15)) #타겟페이지 체류시간    
+
+
+            find_list = ["//div[contains(@class,'bmq0KAlj12')]","//a[contains(@class,'N=a:int.qna')]"]
+
+            scroll_down()#상세정보에서 최초 한번 스크롤 내림
+
+            for a in find_list: #리뷰와 qna 스크롤
+                if time.time() > max_time_end: break #정해진 체류시간이 지나면 자동으로 종료
+                time.sleep(2)
+                browser.find_element(By.XPATH,a).click()
+                scroll_down()
+
+            while(True):
+                if time.time() > max_time_end: break  
+
+            time.sleep(2)
+            browser.back()
 
         ##########################################################################################
         # //END                                                                                  #
