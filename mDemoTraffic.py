@@ -175,7 +175,7 @@ if  __name__  ==  '__main__' :
 
         choice_user_agent = random.randint(1,3)
         print(choice_user_agent)
-        if choice_user_agent == 1 | choice_user_agent == 3:
+        if choice_user_agent == 1 or choice_user_agent == 3:
             root = android_chrome_xml.getroot()
             agents=root.findall('agent')
             user_agent=random.choice(agents).text
@@ -319,14 +319,14 @@ if  __name__  ==  '__main__' :
                     search=browser.find_element(By.NAME,"query")
                     break
                 except NoSuchElementException:
-                    browser.execute_script("window.history.go(-1)")
+                    browser.back()
         else:
             while(True):
                 try:
                     search=browser.find_element(By.ID,"MM_SEARCH_FAKE")
                     break
                 except NoSuchElementException:
-                    browser.execute_script("window.history.go(-1)")
+                    browser.back()
 
         search.click()
         time.sleep(2)
@@ -543,20 +543,27 @@ if  __name__  ==  '__main__' :
             time.sleep(2)
             browser.find_element(By.XPATH,a).click()
             scroll_down()
-
+        limit = random.randint(5,10)
+        limit_count = 0
         while(True):
             if time.time() > max_time_end: break 
+            if(limit_count <= limit):
+                total=random.randint(2,3)
+                count=0
+                upanddown=random.randint(1,2)
+                while(count <= total):
+                    if(upanddown == 1):    
+                        for i in range(200):
+                            ran = random.uniform(1.8, 2)
+                            browser.execute_script("window.scrollBy(0,{})".format(ran)) 
+                    else:
+                        for i in range(200):
+                            ran = random.uniform(1.8, 2)
+                            browser.execute_script("window.scrollBy(0,{})".format(-ran))       
+                    time.sleep(random.uniform(0.8, 1.0))
+                    count = count + 1
 
-            upanddown=random.randint(1,4)
-            if(upanddown == 4):
-                for i in range(200):
-                    ran = random.uniform(1.8, 2)
-                    browser.execute_script("window.scrollBy(0,{})".format(ran)) 
-            else:
-                for i in range(200):
-                    ran = random.uniform(1.8, 2)
-                    browser.execute_script("window.scrollBy(0,{})".format(-ran))       
-            time.sleep(random.uniform(0.8, 1.0))
+                limit_count = limit_count + 1
         time.sleep(2)
         browser.back()
 
@@ -648,7 +655,7 @@ if  __name__  ==  '__main__' :
                     browser.execute_script("window.scrollBy(0,{})".format(ran)) 
                 
             time.sleep(random.uniform(0.4, 0.8))
-        
+
         time.sleep(2)
         browser.quit() #브라우저 종료
 
