@@ -50,11 +50,11 @@ if  __name__  ==  '__main__' :
 
     #검색 키워드
     print("키워드입력:",end="")
-    keyword = "뱃살빼는 ab슬라이드"
+    keyword = "양털 차렵이불 S/Q"
 
     #검색 아이디
     print("아이템아이디:",end="")
-    itemId = "83921030082"
+    itemId = "83948495696"
 
     #반복작업 수
     print("트래픽 회수:",end="")
@@ -169,6 +169,7 @@ if  __name__  ==  '__main__' :
         #Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/98.0.4758.97 Mobile/15E148 Safari/604.1
         #Mozilla/5.0 (Linux; Android 12; SAMSUNG SM-F711U1) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.2 Chrome/92.0.4515.166 Mobile Safari/537.36
         #Mozilla/5.0 (Linux; Android 11; SM-G525F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36
+
         user_agent=""
 
 
@@ -253,7 +254,7 @@ if  __name__  ==  '__main__' :
 
                 time.sleep(2)
 
-                news_timeout = time.time()+random.randint(10,15)
+                news_timeout = time.time()+random.randint(3,5)
 
                 while(True):
 
@@ -281,10 +282,10 @@ if  __name__  ==  '__main__' :
                     list_li[i].find_element(By.TAG_NAME,'a').click()
                     #print(i)
                     time.sleep(2)
-                    random_time = time.time()+(random.randint(15, 20))
+                    random_time = time.time()+(random.randint(5, 10))
                     while(True):
                         for j in range(200):
-                            browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1.8, 2.2)))
+                            browser.execute_script("window.scrollBy(0,{})".format(random.uniform(2, 2.5)))
                         time.sleep(random.uniform(1.2, 2.3))
 
                         if time.time() > random_time:
@@ -355,12 +356,12 @@ if  __name__  ==  '__main__' :
 
             time.sleep(2)
             
-            max_time_end = time.time()+(random.randint(10, 15)) #랜덤 숫자시간동안 체류
+            max_time_end = time.time()+(random.randint(5,10)) #랜덤 숫자시간동안 체류
             while(True):
                 if(time.time()>ranSearch_wait_time): break
 
                 for i in range(200):
-                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(1.8, 2.2)))
+                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(2.0, 2.5)))
                 
                 time.sleep(random.uniform(0.8, 1.3))
                 if time.time() > max_time_end:
@@ -375,7 +376,7 @@ if  __name__  ==  '__main__' :
         ##########################################################################################
         # 키워드검색시작                                                                         #
         ##########################################################################################
-
+        
         """
         STEP01
 
@@ -396,25 +397,30 @@ if  __name__  ==  '__main__' :
         search.send_keys(Keys.ENTER)
         time.sleep(3)
 
-        while True: #쇼핑더보기 가 화면에 나올때까지 스크롤
-            more_shopping = browser.find_element(By.XPATH, '//*[@class="api_more _more"]') 
-            more_shopping_loc = scroll_location(more_shopping) #쇼핑더보기 위치 알아내기
-            isFind = False   
+        if random.randint(1,2) == 1:
+
+            browser.find_element(By.LINK_TEXT,'쇼핑').click()
+
+        else:
+            while True: #쇼핑더보기 가 화면에 나올때까지 스크롤
+                more_shopping = browser.find_element(By.XPATH, '//*[@class="api_more _more"]') 
+                more_shopping_loc = scroll_location(more_shopping) #쇼핑더보기 위치 알아내기
+                isFind = False   
+                
+                for i in range(200):
+                    ran = random.uniform(2, 2.5)
+                    browser.execute_script("window.scrollBy(0,{})".format(ran))
+
+                    more_shopping_loc = more_shopping_loc - ran
+                    if more_shopping_loc < 0: 
+                        isFind = True
+
+
+                time.sleep(random.uniform(0.1, 0.3))
+                if isFind:break
             
-            for i in range(200):
-                ran = random.uniform(2, 2.5)
-                browser.execute_script("window.scrollBy(0,{})".format(ran))
-
-                more_shopping_loc = more_shopping_loc - ran
-                if more_shopping_loc < 0: 
-                    isFind = True
-
-
-            time.sleep(random.uniform(0.1, 0.3))
-            if isFind:break
-        
-        time.sleep(1) 
-        more_shopping.click() # 쇼핑더보기 클릭
+            time.sleep(1) 
+            more_shopping.click() # 쇼핑더보기 클릭
 
 
         """
@@ -430,7 +436,11 @@ if  __name__  ==  '__main__' :
         findItem =""
 
         while True:
-            page_location = browser.find_element(By.XPATH,'//*[@class="paginator_list_paging__2cmhX"]') # 페이지 요소선택
+            page_location=""
+            try:
+                page_location = browser.find_element(By.XPATH,'//*[@class="paginator_list_paging__2cmhX"]') # 페이지 요소선택
+            except Exception :
+                page_location = browser.find_element(By.XPATH,'//*[@class="footer_notice_area__iUJUF"]')
             page_location_loc = scroll_location(page_location)
             isFind=False
             breaker = False
@@ -473,6 +483,8 @@ if  __name__  ==  '__main__' :
                 찾은 타겟 으로 이동후 클릭.
 
         """ 
+
+        
         time.sleep(3)
         while True:
             isFind = False
@@ -512,7 +524,8 @@ if  __name__  ==  '__main__' :
         # 타겟상품 체류                                                                          #
         ##########################################################################################
         max_time_end = time.time()+(random.randint(int(iStartNum), int(iEndNum))) #타겟페이지 체류시간
-
+       
+        
         def scroll_down():
             time.sleep(2)
             while True:
@@ -521,8 +534,17 @@ if  __name__  ==  '__main__' :
                 find_end = browser.find_element(By.XPATH,'//*[@class="E2QDRW5f2k"]') # 마지막 div
                 find_end_loc = scroll_location(find_end) 
 
+                try:
+                    more_click = browser.find_element(By.XPATH,'//*[@class="PI5NSn_N8Y N=a:itm.dmore" and @aria-current="false"]')
+                    find_more_loc = scroll_location(more_click)
+                    if find_more_loc >= 0:
+                        more_click.click()
+                        time.sleep(1)
+                except Exception:
+                    pass
+                
                 for i in range(200):
-                    ran = random.uniform(1.8, 2)
+                    ran = random.uniform(3, 3.5)
                     browser.execute_script("window.scrollBy(0,{})".format(ran))
 
                     find_end_loc = find_end_loc - ran
@@ -554,11 +576,11 @@ if  __name__  ==  '__main__' :
                 while(count <= total):
                     if(upanddown == 1):    
                         for i in range(200):
-                            ran = random.uniform(1.8, 2)
+                            ran = random.uniform(2, 2.5)
                             browser.execute_script("window.scrollBy(0,{})".format(ran)) 
                     else:
                         for i in range(200):
-                            ran = random.uniform(1.8, 2)
+                            ran = random.uniform(2, 2.5)
                             browser.execute_script("window.scrollBy(0,{})".format(-ran))       
                     time.sleep(random.uniform(0.8, 1.0))
                     count = count + 1
@@ -575,7 +597,7 @@ if  __name__  ==  '__main__' :
         ##########################################################################################
         # 랜덤게시물                                                                             #
         ##########################################################################################
-        if random.randint(1,2) == 1:
+        if 2 == 1:
 
             find_rand_shops = browser.find_elements(By.XPATH, "//*[contains(@data-nclick,'N=a:lst*N.item')]")
             print(len(find_rand_shops))
@@ -638,7 +660,7 @@ if  __name__  ==  '__main__' :
         ##########################################################################################
         # //END                                                                                  #
         ##########################################################################################
-        time.sleep(random.randint(5, 15))
+        time.sleep(random.randint(3, 5))
         end_time=time.time()+(random.randint(5,15))
         while(True):
             if time.time() > end_time: break 
@@ -647,11 +669,11 @@ if  __name__  ==  '__main__' :
             if(upanddown ==1 |upanddown == 2| upanddown== 3):
 
                 for i in range(200):
-                    ran = random.uniform(1.8, 2)
+                    ran = random.uniform(2, 2.5)
                     browser.execute_script("window.scrollBy(0,{})".format(-ran))
             else:
                 for i in range(200):
-                    ran = random.uniform(1.8, 2)
+                    ran = random.uniform(2, 2.5)
                     browser.execute_script("window.scrollBy(0,{})".format(ran)) 
                 
             time.sleep(random.uniform(0.4, 0.8))
