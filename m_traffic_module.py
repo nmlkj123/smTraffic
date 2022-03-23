@@ -82,7 +82,7 @@ class module:
             for a in range(random.randint(1,2)):
                 time.sleep(2)
                 for i in range(300):
-                    ran = random.uniform(2, 2.5)
+                    ran = random.uniform(3, 3.5)
                     browser.execute_script("window.scrollBy(0,{})".format(ran))
 
             time.sleep(2)
@@ -104,8 +104,8 @@ class module:
                 while(True):
 
                     for i in range(200):
-                        browser.execute_script("window.scrollBy(0,{})".format(random.uniform(2, 2.5)))
-                    time.sleep(random.uniform(0.8, 1.2))
+                        browser.execute_script("window.scrollBy(0,{})".format(random.uniform(3, 3.5)))
+                    time.sleep(random.uniform(0.3, 0.4))
 
                     if(time.time()>news_wait_time): break
                     
@@ -130,8 +130,8 @@ class module:
                     random_time = time.time()+(random.randint(5, 10))
                     while(True):
                         for j in range(200):
-                            browser.execute_script("window.scrollBy(0,{})".format(random.uniform(2, 2.5)))
-                        time.sleep(random.uniform(1.2, 2.3))
+                            browser.execute_script("window.scrollBy(0,{})".format(random.uniform(3, 3.5)))
+                        time.sleep(random.uniform(0.3, 0.8))
 
                         if time.time() > random_time:
                             break
@@ -202,14 +202,14 @@ class module:
                 if(time.time()>ranSearch_wait_time): break
 
                 for i in range(200):
-                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(2.0, 2.5)))
+                    browser.execute_script("window.scrollBy(0,{})".format(random.uniform(3.0, 3.5)))
                 
-                time.sleep(random.uniform(0.8, 1.3))
+                time.sleep(random.uniform(0.4, 0.8))
                 if time.time() > max_time_end:
                     break         
 
 
-    def keyword_search(browser,keyword,itemId):
+    def keyword_search(browser,keyword,itemId): # 키워드 검색 후 상품 찾기
         page =1
 
         """
@@ -243,7 +243,7 @@ class module:
                 isFind = False   
                 
                 for i in range(200):
-                    ran = random.uniform(2, 2.5)
+                    ran = random.uniform(3, 3.5)
                     browser.execute_script("window.scrollBy(0,{})".format(ran))
 
                     more_shopping_loc = more_shopping_loc - ran
@@ -289,7 +289,7 @@ class module:
             #print(page_location_loc)
 
             for i in range(200):
-                ran = random.uniform(2, 2.5)
+                ran = random.uniform(3, 3.5)
                 browser.execute_script("window.scrollBy(0,{})".format(ran))
 
                 page_location_loc = page_location_loc - ran
@@ -304,7 +304,7 @@ class module:
                     page_element=page_location.find_element(By.XPATH,"./a[contains(@data-nclick,'r:{}')]".format(page))
                     time.sleep(2)
                     page_element.click()
-                    time.sleep(5)
+                    time.sleep(3)
                     break
 
             #print("뺀수",page_location_loc)        
