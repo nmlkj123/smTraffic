@@ -347,6 +347,7 @@ class module:
             Note:
                 타켓상품 체류
         """
+
         max_time_end = time.time()+(random.randint(int(iStartNum), int(iEndNum))) #타겟페이지 체류시간
        
         def scroll_down():
@@ -468,19 +469,20 @@ class module:
 
         limit_count = 0
         print("체류끝")
+        
         while(True):
             if time.time() > max_time_end: break 
-            if(limit_count <= random.randint(5,10)):
+            if(limit_count <= random.randint(3,8)):
                 total=random.randint(2,3)
                 count=0
                 upanddown=random.randint(1,2)
                 while(count <= total):
                     if(upanddown == 1):    
-                        for i in range(200):
+                        for i in range(random.randint(50,200)):
                             ran = random.uniform(scroll_speed_min,scroll_speed_max)
                             browser.execute_script("window.scrollBy(0,{})".format(ran)) 
                     else:
-                        for i in range(200):
+                        for i in range(random.randint(50,200)):
                             ran = random.uniform(scroll_speed_min,scroll_speed_max)
                             browser.execute_script("window.scrollBy(0,{})".format(-ran))       
                     time.sleep(random.uniform(0.8, 1.0))
