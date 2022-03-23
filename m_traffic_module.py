@@ -379,6 +379,7 @@ class module:
                         for i in range(200) :
                             ran = random.uniform(scroll_speed_min,scroll_speed_max)
                             browser.execute_script("window.scrollBy(0,{})".format(-ran))
+                        print("올림")
                         time.sleep(0.8)
                         count +=count
 
