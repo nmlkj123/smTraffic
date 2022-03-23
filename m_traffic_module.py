@@ -373,15 +373,15 @@ class module:
                     except Exception:
                         pass
                 
-                if(random.randint(1,5) == 1):#분의 1확률로 한두번 스크롤 올림
+                if(random.randint(1,8) == 1):#분의 1확률로 한두번 스크롤 올림
                     count = 0
                     while(count < random.randint(1,2)):
-                        for i in range(200) :
+                        for i in range(random.randint(80,200)) :
                             ran = random.uniform(scroll_speed_min,scroll_speed_max)
                             browser.execute_script("window.scrollBy(0,{})".format(-ran))
-                        print("올림")
+                        #print("올림")
                         time.sleep(0.8)
-                        count +=count
+                        count +=1
 
                 for i in range(200): # 계속내림 목표지점까지
                     ran = random.uniform(scroll_speed_min,scroll_speed_max)
@@ -404,8 +404,8 @@ class module:
                         ran = random.uniform(scroll_speed_min,scroll_speed_max)
                         browser.execute_script("window.scrollBy(0,{})".format(-ran))
                     time.sleep(0.8)
-                    count +=count
-
+                    count +=1
+                    
                     time.sleep(random.uniform(0.4, 0.8))
 
         find_list =[]
